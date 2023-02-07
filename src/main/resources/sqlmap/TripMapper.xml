@@ -10,5 +10,10 @@
   		values(#{tripdate}, #{writer}, #{title}, #{content})
   	</insert>
   
+  	<select id="getList" resultType="TripVO">
+  		<!-- select tno, title, hit, regdate from trip order by tno desc -->
+  		select * from trip order by tno desc
+  	</select>
+  	
   </mapper>
   

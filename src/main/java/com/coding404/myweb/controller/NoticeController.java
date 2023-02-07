@@ -1,8 +1,11 @@
 package com.coding404.myweb.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -21,14 +24,16 @@ public class NoticeController {
 	
 	//화면 구현 - 컨트롤러 연결
 	@RequestMapping("/notice_list")
-	public String notice_list() {
+	public String notice_list(Model model) {
 		
 		/*
 		 * service, mapper 영역에 getList 함수를 선언하고
 		 * 등록번호 역순으로 데이터를 조회해서 가지고 나옵니다.
-		 * model에 담아서
+		 * model에 담아서 (여기서 모델에 담아줘야 함)
 		 * 화면에서는 반복문으로 처리.
 		 */
+		ArrayList<TripVO> list = tripService.getList();
+		model.addAttribute("list", list); //model객체에 addAttribute로 리스트를 list라는 이름으로 담음
 		
 		return "trip/notice_list";
 	}

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- ▼ home.jsp에서 가져옴, jstl 사용하려고 -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>     
 
 	<div id="container">
 		<!-- location_area -->
@@ -42,6 +44,16 @@
 					</tr>
 				</thead>
 				<tbody>
+				
+					<c:forEach var="board" items="${list }">
+					<tr>
+						<td>${board.tno }</td>
+						<td class="tit_notice">${board.title }</td>
+						<td>${board.hit }</td>
+						<td>${board.regdate }</td>
+					</tr>
+					</c:forEach>
+					
 					<tr>
 						<td>1</td>
 						<td class="tit_notice"><a href="javascript:;">이번 여름 휴가 제주 갈까? 미션 투어 (여행경비 50만원 지원)</a> </td>
