@@ -7,7 +7,7 @@
   <!-- 마이바티스 부연 설정 -->
   <configuration>
   	<typeAliases>
-  		
+  		<typeAlias type="com.coding404.myweb.command.TripVO" alias="TripVO"/>
   		
   	</typeAliases>
   	

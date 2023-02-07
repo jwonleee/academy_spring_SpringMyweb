@@ -1,0 +1,10 @@
+create table trip (
+	tno int primary key auto_increment,
+    tripdate varchar(30) not null,
+    writer varchar(30) not null,
+    title varchar(200) not null,
+    content varchar(1000),
+    hit int default 0,
+    regdate timestamp default now() -- 시간타입: 기본값, 지금시간
+);
+

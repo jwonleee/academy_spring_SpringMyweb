@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -5,10 +8,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel="stylesheet" href="css/common.css">
-<script src="js/jquery-1.11.3.min.js"></script>
-<script src="js/common.js"></script>  
-<script src="js/jquery.smooth-scroll.min.js"></script> 
+
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common.css">
+<script src="${pageContext.request.contextPath }/resources/js/jquery-1.11.3.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/common.js"></script>  
+<script src="${pageContext.request.contextPath }/resources/js/jquery.smooth-scroll.min.js"></script> 
 
 <script type="text/javascript">
 // 현재 페이지에만 적용
@@ -32,7 +36,7 @@ $(document).ready(function(){
 		<div class="bodytext_area box_inner">
 			<!-- login-wrap -->
 			<div class="login_wrap">
-				<h1 class="loginTit"><a href="#"><img src="img/tit_login.png" alt="TOURIST IN TOUR" /></a></h1>
+				<h1 class="loginTit"><a href="#"><img src="${pageContext.request.contextPath }/resources/img/tit_login.png" alt="TOURIST IN TOUR" /></a></h1>
 
 				<ul class="login_list">
 					
@@ -41,7 +45,6 @@ $(document).ready(function(){
 					<li style="padding: 0; display: flex; justify-content: center;" >
 						<a href="#" style="color:#000; padding: 0 10px;">회원가입</a>
 						<a href="#" style="color:#000;  padding: 0 10px;">로그인</a>
-					
 					</li>
 				</ul>
 				
@@ -56,7 +59,6 @@ $(document).ready(function(){
 					<div class="switch"></div>
 					<p>
 					    <a href="#" class="btn_onoff" onclick="return false;">로그인 유지</a>
-					    
 					</p>
 
 				</div>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+  "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+  
+ <tiles-definitions>
+	<!-- 템플릿의 모형을 정의, header, footer, body, sidebar-->
+	<!-- name은 컨트롤러에서 반환되는 값 template은 파일의 위치 -->
+	<definition name="base" template="/WEB-INF/tiles/template.jsp">
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+		<put-attribute name="left" value="/WEB-INF/tiles/left.jsp" />
+	</definition>
+	
+	<!-- 위에 선언된 base템플릿을 상속 ▶ body부분을 동적으로 처리 -->
+	<!-- 1단 경로 -->
+	<definition name="*" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views/{1}.jsp" />
+	</definition>
+	<!-- 2단 경로 -->
+	<definition name="*/*" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
+	</definition>
+	<!-- 3단 경로 -->
+	<definition name="*/*/*" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
+	</definition>
+	
+	
+	<!-- 템플릿을 사용하지 않을 경로 -->
+	<definition name="user/login" template="/WEB-INF/views/user/login.jsp" />
+
+ 	
+ </tiles-definitions>
