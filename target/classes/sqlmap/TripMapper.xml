@@ -15,5 +15,38 @@
   		select * from trip order by tno desc
   	</select>
   	
+  	<select id="getContent" resultType="TripVO">
+  		select * from trip where tno=#{tno}
+  	</select>
+  	
+  	<update id="noticeModify" parameterType="TripVO">
+  		update trip
+  		set tripdate = #{tripdate},
+  			title = #{title},
+  			content = #{content}
+  		where tno = #{tno}
+  	</update>
+  	
+  	<delete id="noticeDelete">
+  		delete from trip where tno =#{tno}
+  	</delete>
+  	
+  	<update id="upHit" parameterType="int">
+  		update trip
+  		set hit = hit + 1
+  		where tno = #{tno}
+  	</update>
+  	
+  	<!-- 이전글, 다음글 -->
+  	<!-- xml or html에서 부등호는 태그로 인식이 되는데, ADATA는 순수한 문자열의 형태로 인식 시킴 -->
+  	<select id="getPrevNext" resultType="TripVO" parameterType="int">
+  	<![CDATA[
+  		select * from trip
+		where tno in ( (select tno from trip where tno < #{tno} order by tno desc limit 1),
+					   (select tno from trip where tno > #{tno} limit 1) )
+  		order by tno desc
+  		]]>
+  	</select>
+  	
   </mapper>
   

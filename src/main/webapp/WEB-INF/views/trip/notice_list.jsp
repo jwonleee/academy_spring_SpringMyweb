@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- ▼ home.jsp에서 가져옴, jstl 사용하려고 -->
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>     
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!-- ▼ format & parse 가능한 라이브러리  -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 
 	<div id="container">
 		<!-- location_area -->
@@ -45,75 +48,16 @@
 				</thead>
 				<tbody>
 				
-					<c:forEach var="board" items="${list }">
+					<c:forEach var="board" items="${list }" varStatus="num">
 					<tr>
+						<%-- <td>${num.count }</td> 이거 안써도 됨 --%>
 						<td>${board.tno }</td>
-						<td class="tit_notice">${board.title }</td>
+						<td class="tit_notice"><a href="notice_view?tno=${board.tno }">${board.title }</a> </td>
 						<td>${board.hit }</td>
-						<td>${board.regdate }</td>
+						<td><fmt:formatDate value="${board.regdate }" pattern="yyyy-MM-dd"/></td>
 					</tr>
 					</c:forEach>
 					
-					<tr>
-						<td>1</td>
-						<td class="tit_notice"><a href="javascript:;">이번 여름 휴가 제주 갈까? 미션 투어 (여행경비 50만원 지원)</a> </td>
-						<td>123</td>
-						<td>2018-08-01</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td class="tit_notice"><a href="javascript:;">박물관 미션 투어 응모 당첨자 발표</a> </td>
-						<td>123</td>
-						<td>2018-08-01</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td class="tit_notice"><a href="javascript:;">추석 연휴 티켓/투어 배송 및 직접 수령 안내</a> </td>
-						<td>123</td>
-						<td>2018-08-01</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td class="tit_notice"><a href="javascript:;">하롱베이 서비스 OPEN! (여행정보, 가이드북, 가이드맵)</a> </td>
-						<td>123</td>
-						<td>2018-08-01</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td class="tit_notice"><a href="javascript:;">투어리스트인투어 서비스 점검 안내 - 투어리스트인투어에서 매월 실시하는 정기점검 안내</a> </td>
-						<td>123</td>
-						<td>2018-08-01</td>
-					</tr>
-					<tr>
-						<td>6</td>
-						<td class="tit_notice"><a href="javascript:;">이번 여름 휴가 제주 갈까? 미션 투어 (여행경비 50만원 지원)</a> </td>
-						<td>123</td>
-						<td>2018-08-01</td>
-					</tr>
-					<tr>
-						<td>7</td>
-						<td class="tit_notice"><a href="javascript:;">박물관 미션 투어 응모 당첨자 발표</a> </td>
-						<td>123</td>
-						<td>2018-08-01</td>
-					</tr>
-					<tr>
-						<td>8</td>
-						<td class="tit_notice"><a href="javascript:;">추석 연휴 티켓/투어 배송 및 직접 수령 안내</a> </td>
-						<td>123</td>
-						<td>2018-08-01</td>
-					</tr>
-					<tr>
-						<td>9</td>
-						<td class="tit_notice"><a href="javascript:;">하롱베이 서비스 OPEN! (여행정보, 가이드북, 가이드맵)</a> </td>
-						<td>123</td>
-						<td>2018-08-01</td>
-					</tr>
-					<tr>
-						<td>10</td>
-						<td class="tit_notice"><a href="javascript:;">투어리스트인투어 서비스 점검 안내</a> </td>
-						<td>123</td>
-						<td>2018-08-01</td>
-					</tr>
 				</tbody>
 			</table>
 			<!-- pagination -->
@@ -136,6 +80,7 @@
 	</div>
 	<!-- //container -->
 	
+	<!-- 화면에서 msg받아서 alert로 나타냄 -->
 	<script>
 		var msg = '${msg}'; //글 등록되면 msg변수를 여기로 가져와서 msg 변수에 넣음
 		if(msg != '') { //msg가 공백이 아니라면 알림창 띄움
