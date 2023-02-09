@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-
-  
-    
-    
     
 	<header id="header">
 		<div class="header_area box_inner clear">	

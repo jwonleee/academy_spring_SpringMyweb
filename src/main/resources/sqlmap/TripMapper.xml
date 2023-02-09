@@ -12,7 +12,44 @@
   
   	<select id="getList" resultType="TripVO">
   		<!-- select tno, title, hit, regdate from trip order by tno desc -->
-  		select * from trip order by tno desc
+  		<!-- select * from trip order by tno desc limit #{pageStart}, #{amount} -->
+  		
+  		<!-- 동적쿼리구문의 test에는 vo의 getter, map의 key값이 들어갑니다. -->
+  		select * from trip
+  		
+  		<!-- where 컬럼 like 값 -->
+  		<!-- if 구문: 보통 이거 씀-->
+  		<if test="searchType == 'title'   ">where title like concat('%', #{searchName}, '%') </if>
+  		<if test="searchType == 'content' ">where content like concat('%', #{searchName}, '%') </if>
+  		<if test="searchType == 'writer'  ">where writer like concat('%', #{searchName}, '%') </if>
+  		<if test="searchType == 'titcont' ">where title like concat('%', #{searchName}, '%')
+  											   or content like concat('%', #{searchName}, '%')</if>
+  		<if test="searchType == null or searchType == '' ">where 1=1 </if> <!-- 동적 쿼리에서 어떤 상황에서도 에러 안나게 하려고 1=1로 true 만들어줌 -->							   
+  		
+  		<!-- choose 구문 -->
+  		<!-- 
+  		<choose>
+  			<when test="searchType == 'title'">where title like concat('%', #{searchName}, '%')</when>
+  			<when test="searchType == 'content'">where content like concat('%', #{searchName}, '%')</when>
+  			<when test="searchType == 'writer'">where writer like concat('%', #{searchName}, '%')</when>
+  			<when test="searchType == 'titcont'">where title like concat('%', #{searchName}, '%')
+  												 or content like concat('%', #{searchName}, '%')</when>
+  			<otherwise>where 1=1</otherwise>
+  		</choose>
+  		 -->
+  		
+  		order by tno desc
+  		limit #{pageStart}, #{amount}
+  	</select>
+  	
+  	<select id="getTotal" resultType="int">
+  		select count(*) as total from trip
+  		<if test="searchType == 'title'   ">where title like concat('%', #{searchName}, '%') </if>
+  		<if test="searchType == 'content' ">where content like concat('%', #{searchName}, '%') </if>
+  		<if test="searchType == 'writer'  ">where writer like concat('%', #{searchName}, '%') </if>
+  		<if test="searchType == 'titcont' ">where title like concat('%', #{searchName}, '%')
+  											   or content like concat('%', #{searchName}, '%')</if>
+  		<if test="searchType == null or searchType == '' ">where 1=1 </if> <!-- 동적 쿼리에서 어떤 상황에서도 에러 안나게 하려고 1=1로 true 만들어줌 -->
   	</select>
   	
   	<select id="getContent" resultType="TripVO">
